@@ -1,10 +1,15 @@
-function Items({ item }) {
+import { useState } from "react"
+
+function Items({ item , onDeleteElement}) {
+    const [checked,setChecked] = useState(false);
+
     return (
         <li>
-            <span style={item.packed ? {textDecoration:'line-through'}:{}}>
+            <input type="checkbox" value={checked} onChange={()=>setChecked(cur => !cur)}/>
+            <span style={checked ? {textDecoration:'line-through'}:{}}>
                 {item.quantity} {item.description}
             </span>
-            <button >❌</button>
+            <button onClick={()=>onDeleteElement(item.id)}>❌</button>
         </li>
     )
 }

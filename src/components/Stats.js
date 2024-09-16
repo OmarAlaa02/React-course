@@ -3,7 +3,7 @@ function Stats() {
     return (
         <footer className='stats'>
             <em>
-                you have
+                @FAR AWAY
             </em>
         </footer>
     )

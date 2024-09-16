@@ -8,21 +8,25 @@ import Stats from "./components/Stats";
 
 function App() {
 
-  const [list,setList]=useState([
-  { id: 1, description: "Passports", quantity: 2, packed: false },
-  { id: 2, description: "Socks", quantity: 12, packed: false },
-  { id: 3, description: "charger", quantity: 12, packed: false }
-  ]);
+  const [list,setList]=useState([]);
 
   const handleChange=(newItem)=>{
-    setList(curList => curList.concat(newItem));
+    setList(curList => [...curList,newItem]);
     console.log(list);
+  }
+
+  const onDeleteElement=(id)=>{
+    setList(curList =>curList.filter(item => item.id !== id));
+  }
+
+  const onClearClicked=()=>{
+    setList([]);
   }
 
   return <div className="app">
     <Logo />
     <Form func={handleChange}/>
-    <PackingList initialItems={list} />
+    <PackingList initialItems={list} onDeleteElement={onDeleteElement} onClearClicked={onClearClicked} />
     <Stats />
   </div>
 }

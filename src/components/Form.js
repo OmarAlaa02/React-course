@@ -12,7 +12,7 @@ function Form({ func }) {
         const quantity=select;
         setInput('');
         setSelect(1);
-        func([{id:Date.now(),description:descrition,quantity:quantity,packed:false}]);
+        func({id:Date.now(),description:descrition,quantity:quantity,packed:false});
     }
 
     return (
