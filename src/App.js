@@ -9,10 +9,9 @@ import Stats from "./components/Stats";
 function App() {
 
   const [list,setList]=useState([]);
-
+  console.log('rendered');
   const handleChange=(newItem)=>{
     setList(curList => [...curList,newItem]);
-    console.log(list);
   }
 
   const onDeleteElement=(id)=>{
@@ -20,14 +19,22 @@ function App() {
   }
 
   const onClearClicked=()=>{
-    setList([]);
+    const confirmed = window.confirm('Are you sure ??');
+
+    if(confirmed)
+      setList([]);
+  }
+
+  const onUpdateChecked=(id)=>{
+    setList(curList => curList.map(item => item.id === id ? {...item,packed:!(item.packed)}:item));
+    console.log(list);
   }
 
   return <div className="app">
     <Logo />
     <Form func={handleChange}/>
-    <PackingList initialItems={list} onDeleteElement={onDeleteElement} onClearClicked={onClearClicked} />
-    <Stats />
+    <PackingList initialItems={list} onDeleteElement={onDeleteElement} onClearClicked={onClearClicked} onUpdateChecked={onUpdateChecked} />
+    <Stats items={list}/>
   </div>
 }
 

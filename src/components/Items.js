@@ -1,12 +1,10 @@
-import { useState } from "react"
 
-function Items({ item , onDeleteElement}) {
-    const [checked,setChecked] = useState(false);
+function Items({ item , onDeleteElement ,onUpdateChecked}) {
 
     return (
         <li>
-            <input type="checkbox" value={checked} onChange={()=>setChecked(cur => !cur)}/>
-            <span style={checked ? {textDecoration:'line-through'}:{}}>
+            <input type="checkbox" value={item.packed} onChange={()=>onUpdateChecked(item.id)}/>
+            <span style={item.packed ? {textDecoration:'line-through'}:{}}>
                 {item.quantity} {item.description}
             </span>
             <button onClick={()=>onDeleteElement(item.id)}>❌</button>
